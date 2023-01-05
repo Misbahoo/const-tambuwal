@@ -36,8 +36,7 @@ const English = () => {
         if (submitted) {
             setSubmitted(true);
 
-            var index = selected.findIndex(item => item.name === input.name);
-            if (index!== -1) {
+
         // setSubmitted(JSON.parse(localStorage.getItem('submittedEnglish')));
         // const theSelection = JSON.parse(localStorage.getItem('subjectsPosition'));
         //   if(theSelection.indexOf('english') !== '-1'){
