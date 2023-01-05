@@ -33,9 +33,6 @@ const English = () => {
 
         e.preventDefault();
 
-        if (submitted) {
-            setSubmitted(true);
-
 
         // setSubmitted(JSON.parse(localStorage.getItem('submittedEnglish')));
         // const theSelection = JSON.parse(localStorage.getItem('subjectsPosition'));
