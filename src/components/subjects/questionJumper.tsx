@@ -4,7 +4,7 @@
 const QuestionJumper = (props:any) => {
 
 
-    const {setDisablePrev, setDisableNext, setTheValue} = props.states;
+    const {setDisablePrev, setDisableNext, setTheValue, setShowSubmit} = props.states;
     const {theValue, selected} = props;
     return(
          <div className="flex justify-center">
@@ -17,9 +17,12 @@ const QuestionJumper = (props:any) => {
                                     if((index+1) === 1){
                                         setDisablePrev(true)
                                     }else(setDisablePrev(false))
-                                    if(index+1 === 50){
-                                        setDisableNext(true)
-                                    }else(setDisableNext(false));
+                                    if(index+1 === 10){
+                                        setShowSubmit(true);
+                                        setDisableNext(true);
+                                    }else{
+                                        setShowSubmit(false);
+                                        setDisableNext(false)};
                                  setTheValue({...theValue, first: index+1})
                             }
                         }>{index+1}</button>

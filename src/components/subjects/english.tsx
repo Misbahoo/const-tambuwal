@@ -30,8 +30,7 @@ const English = () => {
     const [submitted, setSubmitted] = useState(false);
 
     const submit = (e:any) => {
-
-        e.preventDefault();
+            setSubmitted(true);
 
 
         // setSubmitted(JSON.parse(localStorage.getItem('submittedEnglish')));
@@ -41,7 +40,6 @@ const English = () => {
         //         localStorage.removeItem('subjectsPosition');
         //         theSelection.splice(subjectPosition, 1, `r${subjectPosition+1}Submitted`);
         //         localStorage.setItem('subjectsPosition', JSON.stringify(theSelection));
-        //   }
 
     }
 
@@ -67,6 +65,9 @@ const English = () => {
             if(theValue.first >= 9){
                 setShowSubmit(true);
                 setDisableNext(true);
+            }else{
+                setShowSubmit(false);
+                setDisableNext(false);
             }
 
             //enable previous button
@@ -118,7 +119,7 @@ const English = () => {
                 return (              
                     <div key={index1} className={(index1 === theValue.first) ? '': 'hidden'}>
 
-                    <h3><span className="font-bold">Q {index1}:</span> {item.start} <span className="underline">{item.theWord}</span> {item.end}</h3>
+                    <h3><span className={submitted ? 'text-gray-400' : 'font-bold'}>Q {index1}:</span> {item.start} <span className="underline">{item.theWord}</span> {item.end}</h3>
                     {item.options.map((item, index) => {
                         return (
                         <div className="mb-3" key={index}>
@@ -129,7 +130,7 @@ const English = () => {
                                 name={`englishQ${index1}`}
                                 value={item.a}
                                 onChange={handleChange}
-                                disabled={submitted ? submitted : false}
+                                disabled={submitted ? true : false}
                             />
                             <label htmlFor=""> {item.a}</label>
                             <br />
@@ -140,7 +141,7 @@ const English = () => {
                                 name={`englishQ${index1}`}
                                 value={item.b}
                                 onChange={handleChange}
-                                disabled={submitted ? submitted : false}
+                                disabled={submitted ? true : false}
                             />
                             <label htmlFor=""> {item.b}</label>
                             <br />
@@ -151,7 +152,7 @@ const English = () => {
                                 name={`englishQ${index1}`}
                                 value={item.c}
                                 onChange={handleChange}
-                                disabled={submitted ? submitted : false}
+                                disabled={submitted ? true : false}
                             />
                             <label htmlFor=""> {item.c}</label>
                             <br />
@@ -162,7 +163,7 @@ const English = () => {
                                 name={`englishQ${index1}`}
                                 value={item.d}
                                 onChange={handleChange}
-                                disabled={submitted ? submitted : false}
+                                disabled={submitted ? true : false}
                             />
                             <label htmlFor=""> {item.d}</label>
                         </div>
@@ -177,11 +178,11 @@ const English = () => {
             
             }
 
-            {showSubmit ?  <div className="flex flex-col w-2/4 mx-auto"><input type="submit" value="Submit" className="btn bg-green-500 text-white w-2/4 hover:bg-gray-700 mx-auto cursor-pointer"/></div> : ''}
+            {showSubmit ?  <div className='flex justify-center'><button type="submit" name="submit" className="w-2/4 btn bg-green-500 text-white hover:bg-gray-700 mx-auto cursor-pointer">Submit</button></div> : ''}
             </form>
 
             <Buttons states={{disableNext, disablePrev}} prev_next_buttons={{prevButton, nextButton}} />
-            <QuestionJumper states={{setDisableNext, setDisablePrev, setTheValue}} theValue={theValue} selected={selected}/>
+            <QuestionJumper states={{setDisableNext, setDisablePrev, setTheValue, setShowSubmit}} theValue={theValue} selected={selected}/>
 
             <div>
                 <p className="text-gray-600 text-center italic">You cannot change your answer after you have submitted your form.</p>

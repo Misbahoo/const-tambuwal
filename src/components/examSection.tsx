@@ -28,11 +28,15 @@ const ExamSection = () => {
 
             <Header />
             <div className="mx-auto">
-                <p className="text-center text-green-500 uppercase text-4xl">College of Nursing Science Tambuwal</p>
-                <p className="text-center uppercase text-gray-700 text-3xl font-bold">Entry Exermination Exercise 2022/2023 Session </p>
+                <p className="text-center text-green-500 uppercase text-4xl">College of Nursing Science, Tambuwal</p>
+                <p className="text-center uppercase text-gray-700 text-3xl font-bold">Entrance Examination Exercise 2022/2023 Session </p>
                 <div className="flex w-3/4 mx-auto mt-3 p-2 bg-gray-300 rounded-md shadow-sm shadow-gray-500">
                     <p className="w-2/4 text-2xl capitalize font-serif"><span className="font-bold">Name:</span> {foundUser?.firstName} {foundUser?.secondName}</p>
                     <p className="w-2/4 text-2xl capitalize font-serif"><span className="font-bold font-serif">Reg. No.:</span> {foundUser?.userId}</p>
+                </div>
+                <div className="flex w-3/4 mx-auto mt-3 p-2 bg-gray-300 rounded-md shadow-sm shadow-gray-500">
+                    <p className="w-2/4 text-2xl capitalize font-serif"><span className="font-bold">State:</span> {foundUser?.state}</p>
+                    <p className="w-2/4 text-2xl capitalize font-serif"><span className="font-bold font-serif">LGA:</span> {foundUser?.localGovt}</p>
                 </div>
             </div>
             <div className="flex flex-col gap-5 justify-center ml-8 fixed">

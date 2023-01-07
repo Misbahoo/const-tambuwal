@@ -8,11 +8,11 @@ const Header = () => {
             <div className="bg-gray-600 p-3 mb-10 flex">
 
                 <div className="flex w-2/4 ml-8 justify-start">
-                <img
-                    className="w-20 rounded-md"
-                    src="images/constLogo.png"
-                    alt="constambuwal"
-                />
+                    <img
+                        className="w-20 rounded-md"
+                        src="../images/editedConst.png"
+                        alt=""
+                    />
                 </div>
 
                 <div className="flex w-2/4 justify-end mr-10">

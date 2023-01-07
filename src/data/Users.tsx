@@ -13,7 +13,7 @@ export const users = [
         firstName: "balkisu",
         secondName: "yusuf",
         state: "sokoto",
-        localGovt: "tambuwal",
+        localGovt: "bodinga",
         phone: "08012345689",
         image: "somePicture",
     }
