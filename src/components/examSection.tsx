@@ -1,4 +1,5 @@
 import { Outlet, NavLink, useParams } from "react-router-dom";
+import { useState } from "react";
 
 import Header from "./header";
 import {users} from "../data/Users";
@@ -7,6 +8,9 @@ import {users} from "../data/Users";
 const ExamSection = () => {
 
 
+    console.log(JSON.parse(localStorage.getItem('englishAswers')!));
+
+    const [englishSubmitted, setEnglishSubmitted] = useState(true);
     const {userId} = useParams();
 
     const foundUser = users.find(user => user.userId === userId);
@@ -19,7 +23,8 @@ const ExamSection = () => {
         return {
           background: isActive ? "#555" : "",
           fontSize: isActive ? "16px" : "",
-          outline: isActive ? "none" : "none",
+          outline: "none",
+          boxShadow: isActive ? "5px 5px 5px #222" : "",
           left: isActive ? "20px" : "",
         };
       };
@@ -40,33 +45,38 @@ const ExamSection = () => {
                 </div>
             </div>
             <div className="flex flex-col gap-5 justify-center ml-8 fixed">
-                <NavLink
+                {englishSubmitted ? <NavLink
                 to="english" 
-                className="bg-blue-500 text-white p-2 shadow-md shadow-blue-500 hover:shadow-gray-600 rounded-md relative hover:bg-gray-600"
-                style={navLink}>
+                className="bg-blue-500 text-white p-2 shadow-md shadow-gray-600 hover:shadow-gray-600 rounded-md relative hover:bg-gray-600"
+                style={navLink}
+                >
                     English
-                </NavLink>
+                </NavLink> : <button className="bg-gray-400 p-2 text-white relative">English</button>}
+
                 <NavLink
                 to="maths"
-                className="bg-blue-500 text-white p-2 shadow-md shadow-blue-500 rounded-md relative hover:bg-gray-600"
+                className="bg-blue-500 text-white p-2 shadow-md shadow-gray-600 rounded-md relative hover:bg-gray-600"
                 style={navLink}>
                     Maths
                 </NavLink>
+
                 <NavLink
                 to="chemistry"
-                className="bg-blue-500 text-white p-2 shadow-md shadow-blue-500 rounded-md relative hover:bg-gray-600"
+                className="bg-blue-500 text-white p-2 shadow-md shadow-gray-600 rounded-md relative hover:bg-gray-600"
                 style={navLink}>
                     Chemistry
                 </NavLink>
+
                 <NavLink
                 to="biology"
-                className="bg-blue-500 text-white p-2 shadow-md shadow-blue-500 rounded-md relative hover:bg-gray-600"
+                className="bg-blue-500 text-white p-2 shadow-md shadow-gray-600 rounded-md relative hover:bg-gray-600"
                 style={navLink}>
                     Biology
                 </NavLink>
+
                 <NavLink
                 to="physics"
-                className="bg-blue-500 text-white p-2 shadow-md shadow-blue-500 rounded-md relative hover:bg-gray-600"
+                className="bg-blue-500 text-white p-2 shadow-md shadow-gray-600 rounded-md relative hover:bg-gray-600"
                 style={navLink}>
                     Physics
                 </NavLink>

@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
 import {englishQuestions} from '../../questions/englishQ';
 import Buttons from '../buttons';
 import QuestionJumper from './questionJumper';
+import GetAnswers from '../getAswers';
 
 
 const English = () => {
 
+    const [examFinished, setExamFinished] = useState(3);
     const [input, setInputs] = useState({});
     const [selected, setSelected] = useState({});
+    const [allSelected, setAllSelected] = useState(false);
 
     var index1 = 0;
 
@@ -16,21 +19,23 @@ const English = () => {
     const handleChange = (e:any) => {
 
      const {value, name} = e.target;
-
+        
         const numbers = /\d+/g
         const currentArrayIndex = name.match(numbers)[0];
         setInputs({...input, [name]:value});
 
-        setSelected({...selected, [currentArrayIndex]:true});
+        setSelected({...selected, [name]:true});
+
 
     }
 
-
-    
     const [submitted, setSubmitted] = useState(false);
 
     const submit = (e:any) => {
+            e.preventDefault();
             setSubmitted(true);
+
+            localStorage.setItem('englishAswers', JSON.stringify(input));
 
 
         // setSubmitted(JSON.parse(localStorage.getItem('submittedEnglish')));
@@ -49,8 +54,25 @@ const English = () => {
      const [disableNext, setDisableNext] = useState(false);
      const [disablePrev, setDisablePrev] = useState(true);
 
-   //next button functionality
- const nextButton = (e:any) =>{
+
+
+     const KeyDownEventListener = (e:any) => {
+        if(e.code == 'ArrowRight') nextButton(e);
+        if(e.code == 'ArrowLeft') prevButton(e);
+     }
+
+
+    useEffect(() => {
+        document.body.addEventListener('keydown', KeyDownEventListener)
+        return () => {
+            document.body.removeEventListener('keydown', KeyDownEventListener)
+
+        }
+    },[theValue.first])
+
+
+        //next button functionality
+        function nextButton (e:any) {
 
             e.preventDefault();
             setDisablePrev(false);
@@ -76,7 +98,8 @@ const English = () => {
             }
     }//end of next function
 
-        const prevButton = (e:any) => {
+
+        function prevButton (e:any){
 
             e.preventDefault();
 
@@ -102,7 +125,13 @@ const English = () => {
          
         }
 
+        if(submitted) {
+        <GetAnswers />
+        }
+        
+
     return (
+        <>        
         <div className="bg-gray-200 mx-auto my-10 w-3/4 p-10 shadow-sm shadow-gray-600 rounded-lg">
                         <div className="mb-5 p-3 bg-gray-700 rounded-lg">
                             <p className="uppercase font-bold mb-3 text-white">Examination: Use of English</p>
@@ -182,12 +211,13 @@ const English = () => {
             </form>
 
             <Buttons states={{disableNext, disablePrev}} prev_next_buttons={{prevButton, nextButton}} />
-            <QuestionJumper states={{setDisableNext, setDisablePrev, setTheValue, setShowSubmit}} theValue={theValue} selected={selected}/>
+            <QuestionJumper states={{setDisableNext, setDisablePrev, setTheValue, submitted}} theValue={theValue} selected={selected}/>
 
             <div>
                 <p className="text-gray-600 text-center italic">You cannot change your answer after you have submitted your form.</p>
             </div>
         </div>
+    </>
     )
 }
 
