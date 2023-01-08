@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 
 import { englishQuestions } from "../../questions/englishQ";
 import Buttons from "../buttons";
@@ -34,8 +34,6 @@ const English = () => {
     } else {
       setAllSelected(false);
     }
-
-    console.log(checkSelelction);
   };
 
   const submit = (e: any) => {
@@ -46,7 +44,6 @@ const English = () => {
   };
 
   const [theValue, setTheValue] = useState({ first: 1 });
-  //   const [showSubmit, setShowSubmit] = useState(false);
   const [disableNext, setDisableNext] = useState(false);
   const [disablePrev, setDisablePrev] = useState(true);
 
@@ -75,10 +72,8 @@ const English = () => {
 
     //set values for enabling submit and disenabling next buttons
     if (theValue.first >= 9) {
-      //   setShowSubmit(true);
       setDisableNext(true);
     } else {
-      //   setShowSubmit(false);
       setDisableNext(false);
     }
 
@@ -92,7 +87,6 @@ const English = () => {
     e.preventDefault();
 
     //set values for disenabling submit and enabling next buttons
-    // setShowSubmit(false);
     setDisableNext(false);
 
     //stops decreament when first and second values are less than or equals 0
@@ -100,14 +94,13 @@ const English = () => {
       setTheValue({ ...theValue, first: theValue.first - 1 });
     }
 
-    //set value for disabling the previous button
+    //disabling the previous button
     if (theValue.first <= 2) {
       setDisablePrev(true);
     }
 
-    //set values for disabling submit and enabling next buttons
+    //enabling next buttons
     if (theValue.first <= 10) {
-      //   setShowSubmit(false);
       setDisableNext(false);
     }
   }
@@ -219,7 +212,7 @@ const English = () => {
           prev_next_buttons={{ prevButton, nextButton }}
         />
         <QuestionJumper
-          states={{ setDisableNext, setDisablePrev, setTheValue, allSelected }}
+          states={{ setDisableNext, setDisablePrev, setTheValue }}
           theValue={theValue}
           selected={selected}
         />

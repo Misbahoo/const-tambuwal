@@ -2,6 +2,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 import ExamSection from "../components/examSection";
 import LogIn from "../components/login";
+import Admin from "../components/private/admin";
 
 import Maths from "../components/subjects/maths";
 import English from "../components/subjects/english";
@@ -10,22 +11,22 @@ import Biology from "../components/subjects/biology";
 import Physics from "../components/subjects/physics";
 import Dashboard from "../components/subjects/dashBoard";
 
-
-const Pages = () =>
-<BrowserRouter>
+const Pages = () => (
+  <BrowserRouter>
     <Routes>
-        <Route path="/" element={<LogIn />} />
-        <Route path="examSection/:userId" element={<ExamSection />} >
-            <Route index element={<Dashboard />} />
-            <Route path="english" element={<English />} />
-            <Route path="maths" element={<Maths />} />
-            <Route path="chemistry" element={<Chemistry />} />
-            <Route path="biology" element={<Biology />} />
-            <Route path="physics" element={<Physics />} />
-        </Route>
-        <Route path="*" element={<div>Page Not Found</div>} />
+      <Route path="/" element={<LogIn />} />
+      <Route path="admin/:adminId" element={<Admin />} />
+      <Route path="examSection/:userId" element={<ExamSection />}>
+        <Route index element={<Dashboard />} />
+        <Route path="english" element={<English />} />
+        <Route path="maths" element={<Maths />} />
+        <Route path="chemistry" element={<Chemistry />} />
+        <Route path="biology" element={<Biology />} />
+        <Route path="physics" element={<Physics />} />
+      </Route>
+      <Route path="*" element={<div>Page Not Found</div>} />
     </Routes>
-</BrowserRouter>
-
+  </BrowserRouter>
+);
 
 export default Pages;

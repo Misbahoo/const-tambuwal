@@ -5,7 +5,7 @@ import Header from "./header";
 import { users } from "../data/Users";
 
 const ExamSection = () => {
-  console.log(JSON.parse(localStorage.getItem("englishAswers")!));
+  const englishAnswers = JSON.parse(localStorage.getItem("englishAswers")!);
 
   const [englishSubmitted, setEnglishSubmitted] = useState(true);
   const { userId } = useParams();
