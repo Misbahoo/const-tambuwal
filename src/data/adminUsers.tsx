@@ -1,6 +1,6 @@
 export const adminUsers = [
   {
-    adminId: "adminUser1",
+    adminId: "dddd",
     firstName: "usman",
     secondName: "sani",
     state: "sokoto",
@@ -10,7 +10,7 @@ export const adminUsers = [
     status: "admin",
   },
   {
-    adminId: "adminUser2",
+    adminId: "aaaa",
     firstName: "surajo",
     secondName: "ibrahim",
     state: "sokoto",

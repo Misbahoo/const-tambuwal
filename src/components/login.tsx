@@ -11,8 +11,6 @@ const LogIn = () => {
   const [userInput, setUserInput] = useState("");
 
   const handleClick = (e: any) => {
-    e.preventDefault();
-
     if (userInput) {
       const user = users.find((user) => user.userId === userInput);
 
