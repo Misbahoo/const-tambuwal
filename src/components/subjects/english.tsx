@@ -26,7 +26,7 @@ const English = () => {
     const submittedKeys = Object.keys(selected);
 
     const checkSelelction = submittedKeys.filter(
-      (key, index) => selected[key] === true
+      (key, index) => (selected as any)[key] === true
     );
 
     if (checkSelelction.length + 1 >= 10) {
