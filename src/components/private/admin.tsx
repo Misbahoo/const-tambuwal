@@ -43,19 +43,23 @@ const Admin = () => {
         <p className="text-2xl text-gray-500">
           Answers Selected by the Student
         </p>
-        <table>
-          <tr>
-            <th>Question</th>
-            <th>Answer</th>
-          </tr>
-          {englishResult.map((item, index) => {
-            return (
-              <tr key={index}>
-                <td>{item}</td>
-                <td>{studentEnglishResult[item]}</td>
-              </tr>
-            );
-          })}
+        <table className="table-auto border-collapse border w-full">
+          <thead>
+            <tr>
+              <th className="text-left">Question</th>
+              <th className="text-left">Answer</th>
+            </tr>
+          </thead>
+          <tbody>
+            {englishResult.map((item, index) => {
+              return (
+                <tr key={index}>
+                  <td className="">{item}</td>
+                  <td>{studentEnglishResult[item]}</td>
+                </tr>
+              );
+            })}
+          </tbody>
         </table>
       </div>
     </>
