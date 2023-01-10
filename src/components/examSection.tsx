@@ -6,8 +6,10 @@ import { users } from "../data/Users";
 
 const ExamSection = () => {
   const englishAnswers = JSON.parse(localStorage.getItem("englishAswers")!);
+  const englishSubmitted = JSON.parse(
+    localStorage.getItem("englishSubmitted")!
+  );
 
-  const [englishSubmitted, setEnglishSubmitted] = useState(true);
   const { userId } = useParams();
 
   const foundUser = users.find((user) => user.userId === userId);
@@ -56,7 +58,7 @@ const ExamSection = () => {
         </div>
       </div>
       <div className="flex flex-col gap-5 justify-center ml-8 fixed">
-        {englishSubmitted ? (
+        {!englishSubmitted ? (
           <NavLink
             to="english"
             className="bg-blue-500 text-white p-2 shadow-md shadow-gray-600 hover:shadow-gray-600 rounded-md relative hover:bg-gray-600"
@@ -65,7 +67,7 @@ const ExamSection = () => {
             English
           </NavLink>
         ) : (
-          <button className="bg-gray-400 p-2 text-white relative">
+          <button className="bg-gray-400 p-2 text-white relative rounded-md">
             English
           </button>
         )}

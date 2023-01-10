@@ -40,7 +40,8 @@ const English = () => {
     e.preventDefault();
     setSubmitted(true);
 
-    localStorage.setItem("englishAswers", JSON.stringify(input));
+    localStorage.setItem("englishSubmitted", "true");
+    localStorage.setItem("englishAnswers", JSON.stringify(input));
   };
 
   const [theValue, setTheValue] = useState({ first: 1 });
