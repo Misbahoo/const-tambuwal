@@ -1,11 +1,9 @@
 import { Outlet, NavLink, useParams } from "react-router-dom";
-import { useState } from "react";
-
-import Header from "./header";
 import { users } from "../data/Users";
 
+import Header from "./header";
+
 const ExamSection = () => {
-  const englishAnswers = JSON.parse(localStorage.getItem("englishAswers")!);
   const englishSubmitted = JSON.parse(
     localStorage.getItem("englishSubmitted")!
   );
@@ -13,6 +11,10 @@ const ExamSection = () => {
   const { userId } = useParams();
 
   const foundUser = users.find((user) => user.userId === userId);
+
+  if (foundUser) {
+    localStorage.setItem("userId", JSON.stringify(foundUser.userId));
+  }
 
   type ActiveType = {
     isActive: boolean;

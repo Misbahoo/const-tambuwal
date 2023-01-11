@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { englishQuestions } from "../../questions/englishQ";
 import Buttons from "../buttons";
 import QuestionJumper from "./questionJumper";
-import GetAnswers from "../getAswers";
+import { useParams } from "react-router-dom";
 
 const English = () => {
   const [examFinished, setExamFinished] = useState(3);
@@ -11,6 +11,8 @@ const English = () => {
   const [selected, setSelected] = useState({});
   const [allSelected, setAllSelected] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  const userId = useParams();
 
   var index1 = 0;
 
@@ -40,6 +42,7 @@ const English = () => {
     e.preventDefault();
     setSubmitted(true);
 
+    localStorage.setItem("userId", JSON.stringify(userId));
     localStorage.setItem("englishSubmitted", "true");
     localStorage.setItem("englishAnswers", JSON.stringify(input));
   };
@@ -104,10 +107,6 @@ const English = () => {
     if (theValue.first <= 10) {
       setDisableNext(false);
     }
-  }
-
-  if (submitted) {
-    <GetAnswers />;
   }
 
   return (
